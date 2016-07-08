@@ -44,29 +44,40 @@ public class convertor {
 			case 11: aToB(bigInteger);
 			case 12: bToA(bigInteger);
 			case 13: convertToAll(bigInteger);
-			default: System.out.println("wrong choice!");
+			//default: System.out.println("wrong choice!");
 		
 		}
-		
-		
-		
+
 	}
 
-	
 	//1
 	private static String decToBin(String temp){
 		
 		String bin = new BigInteger(temp).toString(2);
-		//System.out.println(bin);		
+		System.out.println(bin);		
 		return bin;
 	}
 	
 	//2
 	private static String binToDec(String temp){
+		
 		String number= null;
+		BigInteger result;
+		int [] array = new int[temp.length()];
+		int power = temp.length()-1;
+		result = BigInteger.valueOf((long) ((temp.charAt(0) - 48) * (Math.pow(2, power--))));
 		
+		for(int i = 1; i < temp.length() ; i++){
+			// minus 48 because temp is string and charAt gives the asci code
+			array[i] = temp.charAt(i) - 48 ;
+
+			//convert int to bigInteger
+			result = result.add(BigInteger.valueOf((long) (array[i] * (Math.pow(2, power))))) ;
+			power --;
+		}
+		System.out.println(result);		
+		number = result.toString();
 		return number;
-		
 	}
 	
 	//3
